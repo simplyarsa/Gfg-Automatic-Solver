@@ -1,5 +1,6 @@
 import puppeteer from 'puppeteer';
-import 'dotenv/config'
+import * as dotenv from "dotenv";
+dotenv.config();
 import express from 'express';
 import nodemailer from 'nodemailer';
 import { CronJob } from 'cron';
@@ -99,7 +100,7 @@ async function login() {
     console.log("Login done")
 }
 
-const cronFunction = new CronJob("0 32 17 * * *", async () => {
+const cronFunction = new CronJob("0 21 18 * * *", async () => {
     await main().catch(console.error);
 });
 
@@ -111,7 +112,7 @@ app.get('/', async (req, res) => {
 
 app.get("/time", (req, res) => {
     let curr_date=new Date().toString()
-    clg(curr_date)
+    console.log(curr_date)
     res.send(curr_date)
 })
 
