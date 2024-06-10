@@ -99,7 +99,7 @@ async function login() {
     console.log("Login done")
 }
 
-const cronFunction = new CronJob("0 30 15 * * *", async () => {
+const cronFunction = new CronJob("0 45 16 * * *", async () => {
     await main().catch(console.error);
 });
 
