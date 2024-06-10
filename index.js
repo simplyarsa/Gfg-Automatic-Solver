@@ -13,9 +13,22 @@ let page;
 
 const main =async () => {
     // Launch the browser
+    const browser = await puppeteer.launch({
+        args: [
+          "--disable-setuid-sandbox",
+          "--no-sandbox",
+          "--single-process",
+          "--no-zygote",
+        ],
+        executablePath:
+          process.env.NODE_ENV === "production"
+            ? process.env.PUPPETEER_EXECUTABLE_PATH
+            : puppeteer.executablePath(),
+      });
+
     try {
         // const browser = await puppeteer.launch({ headless: false });
-        const browser = await puppeteer.launch();
+        // const browser = await puppeteer.launch();
         page = await browser.newPage();
 
         await page.goto('https://www.geeksforgeeks.org/problem-of-the-day/');
@@ -57,6 +70,9 @@ const main =async () => {
     }
     catch (error) {
         console.log(error)
+    }
+    finally {
+        await browser.close();
     }
 };
 
