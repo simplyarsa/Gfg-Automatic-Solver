@@ -99,7 +99,7 @@ async function login() {
     console.log("Login done")
 }
 
-const cronFunction = new CronJob("0 10 17 * * *", async () => {
+const cronFunction = new CronJob("0 32 17 * * *", async () => {
     await main().catch(console.error);
 });
 
@@ -110,30 +110,8 @@ app.get('/', async (req, res) => {
 });
 
 app.get("/time", (req, res) => {
-    const options = {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-      };
-
-      const map={
-        "Jan":"January",
-        "Feb":"February",
-        "Mar":"March",
-        "Apr":"April",
-        "May":"May",
-        "Jun":"June",
-        "Jul":"July",
-        "Aug":"August",
-        "Sep":"September",
-        "Oct":"October",
-        "Nov":"November",
-        "Dec":"December"
-  }
-      
-      let curr_date=new Date().toString()
-    
+    let curr_date=new Date().toString()
+    clg(curr_date)
     res.send(curr_date)
 })
 
