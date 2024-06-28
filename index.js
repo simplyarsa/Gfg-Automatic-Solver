@@ -91,7 +91,7 @@ async function login() {
     await page.click(".problems_login_button__VhEbC")
 
     await delay(2000);
-
+    await page.waitForSelector(".next_input")
     await page.type(".next_input", process.env.EMAIL , { delay: 100 });
     await page.type(`input[type="password"]`, process.env.PASSWORD , { delay: 100 });
     await delay(2000);
